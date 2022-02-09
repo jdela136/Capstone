@@ -18,10 +18,6 @@ const Home = () => {
         setLeague(response.data);
       })
       .catch((error) => {});
-  }, []);
-
-  useEffect(() => {
-
     axios
       .get("http://localhost:8080/teams", {leagueId: league.id })
       .then((response) => {
