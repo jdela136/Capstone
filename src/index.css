@@ -102,3 +102,7 @@ html {
 .bg-clr {
   background: #f8d347;
 }
+
+.space-out {
+  margin-top: 50px;
+}

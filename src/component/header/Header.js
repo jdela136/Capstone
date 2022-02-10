@@ -33,11 +33,6 @@ function Header() {
             <ul className="navbar-nav me-auto mb-2 mb-md-0">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="#">
-                  Standings
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="#">
                   Scores
                 </Link>
               </li>
