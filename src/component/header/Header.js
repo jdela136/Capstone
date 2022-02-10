@@ -15,7 +15,7 @@ function Header() {
     <header>
       <nav className="navbar navbar-expand-md navbar-light bg-clr">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/home">
             League Home
           </Link>
           <button
@@ -32,17 +32,17 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav me-auto mb-2 mb-md-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="#">
+                <Link className="nav-link active" aria-current="page" to="/scores">
                   Scores
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="#">
+                <Link className="nav-link active" aria-current="page" to="/stats">
                   Statistics
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="#">
+                <Link className="nav-link active" aria-current="page" to="/game">
                   Play Game
                 </Link>
               </li>

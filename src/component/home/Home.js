@@ -1,32 +1,30 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import axios, { Axios } from "axios";
-//import { Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Teams from "./Teams";
+import AddPlayer from "./AddPlayer";
+import AddTeam from "./AddTeam";
+import Standings from "./Standings";
 
 const Home = () => {
-  const [league, setLeague] = useState(0);
-  const [teams, setTeams] = useState([]);
+  const [league, setLeague] = useState({});
+
 
   useEffect(() => {
     const params = {
       email: localStorage.getItem("loggedInLeague"),
     };
-    axios
-      .get("http://localhost:8080/league", { params })
+    axios.get("http://localhost:8080/league", {params})
       .then((response) => {
-        setLeague(response.data); const params = {
-          leagueId: response.data.id
-        };
-        axios
-          .get("http://localhost:8080/teams", { params })
-          .then((response) => {
-            setTeams(response.data);
-          })
-          .catch((error) => { });
-      })
-      .catch((error) => { });
-  }, []);
+        setLeague(response.data);
+      }).catch((error) => {
+
+       });
+  }, []
+  
+  );
 
   return (
     <div className="container-fluid home-margin-top-less-200px">
@@ -35,7 +33,7 @@ const Home = () => {
           <div className="sidebar-sticky">
             <ul className="nav flex-column">
               <li className="nav-item space-out">
-                <Link className="nav-link active" to="/home/dashboard">
+                <Link className="nav-link active" to="/home">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -55,7 +53,7 @@ const Home = () => {
                 </Link>
               </li>
               <li className="nav-item space-out">
-                <Link className="nav-link" to="/home/courses">
+                <Link className="nav-link" to="/add-team">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -75,7 +73,7 @@ const Home = () => {
                 </Link>
               </li>
               <li className="nav-item space-out">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/add-player">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -97,7 +95,7 @@ const Home = () => {
               
               
               <li className="nav-item space-out">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/standings">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -188,55 +186,10 @@ const Home = () => {
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 className="h2">{league.leagueName} League</h1>
           </div>
-          <h1 className="h3 text-center">Teams</h1>
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {teams.map((team, index) => {
-              return (
-                <div className="col">
-                  <div className="card shadow-sm">
-                    <svg
-                      className="bd-placeholder-img card-img-top"
-                      width="100%"
-                      height="225"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: Thumbnail"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false"
-                    >
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c"></rect>
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                        Thumbnail
-                      </text>
-                    </svg>
-                    <div className="card-body">
-                      <p className="card-text">Team Name: {team.teamName}</p>
-                      <p className="card-text">Abbreviation: {team.teamAbbr}</p>
-                      <p className="card-text">Wins: {team.wins}</p>
-                      <p className="card-text">Losses: {team.losses}</p>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div className="btn-group">
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-secondary"
-                          >
-                            Stats
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-secondary"
-                          >
-                            Roster
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {<Route path= "/home" component={Teams}/>}
+          {<Route path= "/add-player" component={AddPlayer}/>}
+          {<Route path= "/add-team" component={AddTeam}/>}
+          {<Route path= "/standings" component={Standings}/>}
         </main>
         <div>
         </div>

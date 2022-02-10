@@ -4,7 +4,9 @@ import {Route, withRouter} from 'react-router-dom';
 import SignIn from "../signIn/SignIn";
 import ThankYou from "../thankYou/ThankYou";
 import SignUp from "../signUp/SignUp";
-
+import Scores from "../scores/Scores";
+import LeagueStats from "../leagueStats/LeagueStats";
+import PlayGame from "../playGame/PlayGame";
 
 const LayOut = () => {
 
@@ -15,6 +17,10 @@ const LayOut = () => {
             <Header/>
             <Route exact path= "/" component={Home}/>
             <Route path= "/home" component={Home}/>
+            <Route path= "/scores" component={Scores}/>
+            <Route path= "/stats" component={LeagueStats}/>
+            <Route path= "/game" component={PlayGame}/>
+            
         </div>
             )}
         else {
