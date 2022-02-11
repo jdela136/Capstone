@@ -29,6 +29,9 @@ function LeagueStats() {
 
   return (
     <div>
+      <h1 className="h3 text-center">League Statistics</h1>
+      <br/>
+      <br/>
       <table id="example" class="table table-striped table-bordered" style={{ width: "100%" }}>
         <thead>
           <tr>

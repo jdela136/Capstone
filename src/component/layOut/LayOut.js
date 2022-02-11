@@ -7,6 +7,8 @@ import SignUp from "../signUp/SignUp";
 import Scores from "../scores/Scores";
 import LeagueStats from "../leagueStats/LeagueStats";
 import PlayGame from "../playGame/PlayGame";
+import ChooseTeams from "../chooseTeams/ChooseTeams";
+import SetLineUp from "../setLineUp/SetLineUp";
 
 const LayOut = () => {
 
@@ -19,8 +21,9 @@ const LayOut = () => {
             <Route path= "/home" component={Home}/>
             <Route path= "/scores" component={Scores}/>
             <Route path= "/stats" component={LeagueStats}/>
-            <Route path= "/game" component={PlayGame}/>
-            
+            <Route path= "/game" component={ChooseTeams}/>
+            <Route path= "/game/:teamId/line-up" component={SetLineUp}/>
+            <Route path= "/game/:teamId/play" component={PlayGame}/>
         </div>
             )}
         else {
