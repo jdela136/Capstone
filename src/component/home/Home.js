@@ -7,6 +7,8 @@ import Teams from "./Teams";
 import AddPlayer from "./AddPlayer";
 import AddTeam from "./AddTeam";
 import Standings from "./Standings";
+import LineUp from "./LineUp";
+import TeamStats from "./TeamStats";
 
 const Home = () => {
   const [league, setLeague] = useState({});
@@ -53,7 +55,7 @@ const Home = () => {
                 </Link>
               </li>
               <li className="nav-item space-out">
-                <Link className="nav-link" to="/add-team">
+                <Link className="nav-link" to="/home/add-team">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -73,7 +75,7 @@ const Home = () => {
                 </Link>
               </li>
               <li className="nav-item space-out">
-                <a className="nav-link" href="/add-player">
+                <a className="nav-link" href="/home/add-player">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -95,7 +97,7 @@ const Home = () => {
               
               
               <li className="nav-item space-out">
-                <a className="nav-link" href="/standings">
+                <a className="nav-link" href="/home/standings">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -186,10 +188,13 @@ const Home = () => {
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 className="h2">{league.leagueName} League</h1>
           </div>
-          {<Route path= "/home" component={Teams}/>}
-          {<Route path= "/add-player" component={AddPlayer}/>}
-          {<Route path= "/add-team" component={AddTeam}/>}
-          {<Route path= "/standings" component={Standings}/>}
+          
+          {<Route exact path= "/home" component={Teams}/>}
+          {<Route path= "/home/add-player" component={AddPlayer}/>}
+          {<Route path= "/home/add-team" component={AddTeam}/>}
+          {<Route path= "/home/standings" component={Standings}/>}
+          {<Route path= "/home/:teamId/stats" component={TeamStats}/>}
+          {<Route path= "/home/:teamId/line-up" component={LineUp}/>}
         </main>
         <div>
         </div>

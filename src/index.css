@@ -106,3 +106,11 @@ html {
 .space-out {
   margin-top: 50px;
 }
+
+.big-select{
+  width: 395px;
+}
+
+.table-color {
+  background: #cd301e;
+}

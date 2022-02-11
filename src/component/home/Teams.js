@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import axios, { Axios } from "axios";
-import TeamRoster from "./TeamRoster";
-import TeamStats from "./TeamStats";
+import { Link } from "react-router-dom";
 
 function Teams() {
     const [league, setLeague] = useState({});
@@ -10,23 +9,23 @@ function Teams() {
 
     useEffect(() => {
         const params = {
-          email: localStorage.getItem("loggedInLeague"),
+            email: localStorage.getItem("loggedInLeague"),
         };
         axios
-          .get("http://localhost:8080/league", { params })
-          .then((response) => {
-            setLeague(response.data); const params = {
-              leagueId: response.data.id
-            };
-            axios
-              .get("http://localhost:8080/teams", { params })
-              .then((response) => {
-                setTeams(response.data);
-              })
-              .catch((error) => { });
-          })
-          .catch((error) => { });
-      }, []);
+            .get("http://localhost:8080/league", { params })
+            .then((response) => {
+                setLeague(response.data); const params = {
+                    leagueId: response.data.id
+                };
+                axios
+                    .get("http://localhost:8080/teams", { params })
+                    .then((response) => {
+                        setTeams(response.data);
+                    })
+                    .catch((error) => { });
+            })
+            .catch((error) => { });
+    }, []);
 
 
     return (
@@ -56,21 +55,23 @@ function Teams() {
                                 <div className="card-body">
                                     <p className="card-text">Team Name: {team.teamName}</p>
                                     <p className="card-text">Abbreviation: {team.teamAbbr}</p>
-                                    <p className="card-text">Wins: {team.wins}</p>
-                                    <p className="card-text">Losses: {team.losses}</p>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="btn-group">
                                             <button
                                                 type="button"
                                                 className="btn btn-sm btn-outline-secondary"
                                             >
-                                                Stats
+                                                <Link className="button" to={"/home/" + team.id + "/stats"}>
+                                                    Team Stats
+                                                </Link>
                                             </button>
                                             <button
                                                 type="button"
                                                 className="btn btn-sm btn-outline-secondary"
                                             >
-                                                Roster
+                                                <Link className="button" to={"/home/" + team.id + "/line-up"}>
+                                                    Team Lineup
+                                                </Link>
                                             </button>
                                         </div>
                                     </div>
