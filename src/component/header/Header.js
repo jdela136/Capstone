@@ -42,7 +42,7 @@ function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/game">
+                <Link className="nav-link active" aria-current="page" to="/play-game">
                   Play Game
                 </Link>
               </li>

@@ -114,3 +114,37 @@ html {
 .table-color {
   background: #cd301e;
 }
+
+.home-lineup {
+ margin-top: 50px;
+ position: fixed;
+ display: inline-flex;
+ left: 80%;
+}
+
+.away-lineup {
+  margin-top: 50px;
+  position: fixed;
+  display: inline-flex;
+  left: 2%;
+ }
+
+.game-score {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 40%;
+}
+
+.runner-card{
+  position: fixed;
+  left: 31%;
+  top: 38%;
+}
+
+.options{
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 40%;
+}

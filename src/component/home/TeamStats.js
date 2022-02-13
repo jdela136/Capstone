@@ -20,6 +20,8 @@ function TeamStats() {
       .catch((error) => { });
   }, []);
 
+
+
   return (
     <div>
       <table id="example" class="table table-striped table-bordered" style={{ width: "100%" }}>
@@ -45,7 +47,7 @@ function TeamStats() {
             return (
               <tr>
                 <th>{player.firstName} {player.lastName}</th>
-                <th>{player.stats.average}</th>
+                <th>{Number(player.stats.average).toFixed(3)}</th>
                 <th>{player.stats.atBats}</th>
                 <th>{player.stats.runs}</th>
                 <th>{player.stats.hits}</th>
@@ -55,8 +57,8 @@ function TeamStats() {
                 <th>{player.stats.rbis}</th>
                 <th>{player.stats.walks}</th>
                 <th>{player.stats.strikeouts}</th>
-                <th>{player.stats.obp}</th>
-                <th>{player.stats.slugging}</th>
+                <th>{Number(player.stats.obp).toFixed(3)}</th>
+                <th>{Number(player.stats.slugging).toFixed(3)}</th>
               </tr>
             );
           })}

@@ -46,7 +46,7 @@ function Standings() {
                 <th scope="row">{team.teamName}</th>
                 <td>{team.wins}</td>
                 <td>{team.losses}</td>
-                <td>{team.winPercentage}</td>
+                <td>{Number(team.winPercentage).toFixed(3)}</td>
                 <td>{team.gamesBack}</td>
               </tr>
             );

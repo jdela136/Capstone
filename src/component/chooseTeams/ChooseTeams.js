@@ -42,7 +42,7 @@ function ChooseTeam() {
         const name = event.target.name;
         const value = event.target.value;
         const tempGame = { ...game };
-        tempGame.homeTeam.id = value;
+        tempGame.homeTeam[name] = value;
         setGame(tempGame);
     };
 
@@ -50,7 +50,7 @@ function ChooseTeam() {
         const name = event.target.name;
         const value = event.target.value;
         const tempGame = { ...game };
-        tempGame.awayTeam.id = value;
+        tempGame.awayTeam[name] = value;
         setGame(tempGame);
     };
 
@@ -58,7 +58,7 @@ function ChooseTeam() {
         axios
             .post("http://localhost:8080/start-game", game)
             .then((response) => {
-                history.push("/home");
+                history.push("/game/" + response.data.id);
             })
             .catch((error) => {
                 console.log();
@@ -80,10 +80,10 @@ function ChooseTeam() {
 
                                         <div className="mb-4">
 
-                                            <select onChange={homeTeamChangeHandler} className="select big-select">
+                                            <select onChange={homeTeamChangeHandler} name="id" className="select big-select">
                                                 {teams.map((team, index) => {
                                                     return (
-                                                        <option name="id" value={team.id}>{team.teamName}</option>
+                                                        <option value={team.id}>{team.teamName}</option>
                                                     );
                                                 })}
                                             </select>
@@ -91,16 +91,16 @@ function ChooseTeam() {
                                         </div>
                                         <div className="mb-4">
 
-                                            <select onChange={awayTeamChangeHandler} className="select big-select">
+                                            <select onChange={awayTeamChangeHandler} name="id" className="select big-select">
                                                 {teams.map((team, index) => {
                                                     return (
-                                                        <option name="id" value={team.id}>{team.teamName}</option>
+                                                        <option value={team.id}>{team.teamName}</option>
                                                     );
                                                 })}
                                             </select>
                                             <label className="form-label" for="form3Example1q"> Home Team</label>
                                         </div>
-                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Play Ball</button>
+                                        <button class="btn btn-outline-light btn-lg px-5" onClick={playHandler} type="submit">Play Ball</button>
                                     </div>
                                 </div>
                             </div>
