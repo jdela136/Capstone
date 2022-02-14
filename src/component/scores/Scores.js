@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import axios, { Axios } from "axios";
+import { Link } from "react-router-dom";
 
 function Scores() {
   const [league, setLeague] = useState({});
@@ -8,23 +9,46 @@ function Scores() {
 
   useEffect(() => {
     const params = {
-        email: localStorage.getItem("loggedInLeague"),
+      email: localStorage.getItem("loggedInLeague"),
     };
     axios
-        .get("http://localhost:8080/league", { params })
-        .then((response) => {
-            setLeague(response.data); const params = {
-                leagueId: response.data.id
-            };
-            axios
-                .get("http://localhost:8080/games", { params })
-                .then((response) => {
-                    setGames(response.data);
-                })
-                .catch((error) => { });
-        })
-        .catch((error) => { });
-}, []);
+      .get("http://localhost:8080/league", { params })
+      .then((response) => {
+        setLeague(response.data); const params = {
+          leagueId: response.data.id
+        };
+        axios
+          .get("http://localhost:8080/games", { params })
+          .then((response) => {
+            setGames(response.data);
+          })
+          .catch((error) => { });
+      })
+      .catch((error) => { });
+  }, []);
+
+  const toggleGameStatus = (index) => {
+    if (games[index].endGame === true) {
+      return (
+        <div className="card-header">
+          Final
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="card-header">
+          Live
+          <div className="float-right">
+          <Link to={"/game/" + games[index].id} className="fw-bold text-body">
+            <u>Continue Scoring</u>
+          </Link>
+          </div>
+        </div>
+      );
+    }
+  }
+
 
   return (
     <div>
@@ -33,10 +57,8 @@ function Scores() {
         {games.map((game, index) => {
           return (
             <div className="col">
-              <div class="card" style={{ width: "18rem" }}>
-                <div class="card-header">
-                  Game
-                </div>
+              <div className="card" style={{ width: "18rem" }}>
+                {toggleGameStatus(index)}
                 <table class="card-table table">
                   <thead>
                     <tr>
@@ -47,12 +69,12 @@ function Scores() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{game.awayTeam.teamName}</td>
+                      <td>{game.awayTeam.teamAbbr}</td>
                       <td>{game.awayScore}</td>
                       <td>{game.awayHits}</td>
                     </tr>
                     <tr>
-                      <td>{game.homeTeam.teamName}</td>
+                      <td>{game.homeTeam.teamAbbr}</td>
                       <td>{game.homeScore}</td>
                       <td>{game.homeHits}</td>
                     </tr>

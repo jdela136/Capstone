@@ -2,14 +2,33 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 function Header() {
   const history = useHistory();
+  const [league, setLeague] = useState({
+    commissioner: {
 
+    }
+  });
   const signOutSubmitHandler = () => {
     localStorage.clear();
     history.push("/sign-in");
   };
+
+
+  useEffect(() => {
+    const params = {
+      email: localStorage.getItem("loggedInLeague"),
+    };
+    axios.get("http://localhost:8080/league", {params})
+      .then((response) => {
+        setLeague(response.data);
+      }).catch((error) => {
+
+       });
+  }, []
+  );
 
   return (
     <header>
@@ -48,6 +67,7 @@ function Header() {
               </li>
             </ul>
           </div>
+          <h6>Welcome, {league.commissioner.firstName} {league.commissioner.lastName} </h6>
           <form className="d-flex">
               <button className="btn btn-outline-dark" onClick={signOutSubmitHandler} type="button">
                 Sign Out

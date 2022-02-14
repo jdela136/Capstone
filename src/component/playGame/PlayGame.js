@@ -3,7 +3,13 @@ import { useEffect } from "react";
 import axios, { Axios } from "axios";
 import { useParams } from "react-router-dom";
 import playfield from "../../images/playfield.jpeg";
+import scenario1 from "../../images/scenario1.jpg";
+import scenario2 from "../../images/scenario2.jpg";
+import scenario3 from "../../images/scenario3.jpg";
 import scenario4 from "../../images/scenario4.jpg";
+import scenario5 from "../../images/scenario5.jpg";
+import scenario6 from "../../images/scenario6.jpg";
+import scenario7 from "../../images/scenario7.jpg";
 import { useHistory } from "react-router-dom";
 
 function PlayGame() {
@@ -25,6 +31,8 @@ function PlayGame() {
   const [homeTeamLineUp, setHomeTeamLineUp] = useState([]);
   const [pas, setPAs] = useState([]);
   const history = useHistory();
+  const [runners, setRunners] = useState([]);
+  let runnerBase = '';
 
   useEffect(() => {
     const params = {
@@ -74,7 +82,26 @@ function PlayGame() {
       })
       .catch((error) => { });
 
+    axios
+      .get("http://localhost:8080/runners", { params })
+      .then((response) => {
+        setRunners(response.data);
+      })
+      .catch((error) => { });
+
   }, [pageRefresh]);
+
+
+  const Popup = props => {
+    return (
+      <div className="popup-box">
+        <div className="box">
+          <span className="close-icon" onClick={props.handleClose}>x</span>
+          {props.content}
+        </div>
+      </div>
+    );
+  };
 
 
   const ballHandler = () => {
@@ -84,7 +111,7 @@ function PlayGame() {
         setPageRefresh(pageRefresh + 1);
       })
       .catch((error) => {
-        console.log();
+
       });
   };
 
@@ -95,7 +122,7 @@ function PlayGame() {
         setPageRefresh(pageRefresh + 1);
       })
       .catch((error) => {
-        console.log();
+
       });
   };
 
@@ -106,7 +133,7 @@ function PlayGame() {
         setPageRefresh(pageRefresh + 1);
       })
       .catch((error) => {
-        console.log();
+
       });
   };
 
@@ -118,7 +145,7 @@ function PlayGame() {
           setPageRefresh(pageRefresh + 1);
         })
         .catch((error) => {
-          console.log();
+
         });
     }
     else if (bases === 2) {
@@ -128,7 +155,7 @@ function PlayGame() {
           setPageRefresh(pageRefresh + 1);
         })
         .catch((error) => {
-          console.log();
+
         });
     }
     else if (bases === 3) {
@@ -138,7 +165,7 @@ function PlayGame() {
           setPageRefresh(pageRefresh + 1);
         })
         .catch((error) => {
-          console.log();
+
         });
     }
     else {
@@ -148,9 +175,10 @@ function PlayGame() {
           setPageRefresh(pageRefresh + 1);
         })
         .catch((error) => {
-          console.log();
+
         });
     }
+    plateAppearance.inPlay = false;
   };
   const outHandler = () => {
     axios
@@ -159,8 +187,9 @@ function PlayGame() {
         setPageRefresh(pageRefresh + 1);
       })
       .catch((error) => {
-        console.log();
+
       });
+    plateAppearance.inPlay = false;
   };
 
   const endGameHandler = () => {
@@ -170,7 +199,24 @@ function PlayGame() {
         history.pushState("/home");
       })
       .catch((error) => {
-        console.log();
+
+      });
+  };
+
+  const baseChangeHandler = (event) => {
+    runnerBase = event.target.value;
+  };
+
+  const baseSubmitHandler = (i) => {
+    runners[i].base = runnerBase;
+    console.log(runners[i]);
+    axios
+      .post("http://localhost:8080/move", runners[i])
+      .then((response) => {
+        setPageRefresh(pageRefresh + 1);
+      })
+      .catch((error) => {
+
       });
   };
 
@@ -205,43 +251,93 @@ function PlayGame() {
     }
   }
 
+  const toggleImage = () => {
+
+    if (runners.length === 4) {
+      return (
+        <img className="card-img-top" src={scenario3} alt="Card image" />
+      );
+    }
+    else if (runners.length === 3) {
+      if (runners[1].base === 1 && runners[2].base === 2) {
+        return (
+          <img className="card-img-top" src={scenario2} alt="Card image" />
+        );
+      }
+      else if (runners[1].base === 1 && runners[2].base === 3) {
+        return (
+          <img className="card-img-top" src={scenario5} alt="Card image" />
+        );
+      }
+      else {
+        return (
+          <img className="card-img-top" src={scenario4} alt="Card image" />
+        );
+      }
+    }
+    else if (runners.length === 2) {
+      if (runners[1].base === 1) {
+        return (
+          <img className="card-img-top" src={scenario1} alt="Card image" />
+        );
+      }
+      else if (runners[1].base === 2) {
+        return (
+          <img className="card-img-top" src={scenario7} alt="Card image" />
+        );
+      }
+      else {
+        return (
+          <img className="card-img-top" src={scenario6} alt="Card image" />
+        );
+      }
+    }
+    else {
+      return (
+        <img className="card-img-top" src={playfield} alt="Card image" />
+      );
+    }
+  }
+
+
   const toggleResult = () => {
-    if(pas[1].strikes === 3) {
-      return(
+    if (pas[1].strikes === 3) {
+      return (
         <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} struck out!</td>
       );
     }
-    if(pas[1].balls === 4) {
-      return(
+    if (pas[1].balls === 4) {
+      return (
         <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} walked!</td>
       );
     }
-    if(pas[1].base === 1) {
-      return(
+    if (pas[1].base === 1) {
+      return (
         <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} singled!</td>
       );
     }
-    if(pas[1].base === 2) {
-      return(
+    if (pas[1].base === 2) {
+      return (
         <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} doubled!</td>
       );
     }
-    if(pas[1].base === 3) {
-      return(
+    if (pas[1].base === 3) {
+      return (
         <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} tripled!</td>
       );
     }
-    if(pas[1].base === 4) {
-      return(
+    if (pas[1].base === 4) {
+      return (
         <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} homered!</td>
       );
     }
-    if(pas[1].base === 5) {
-      return(
+    if (pas[1].base === 5) {
+      return (
         <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} got out!</td>
       );
     }
   }
+
 
   const toggleOptions = () => {
 
@@ -281,38 +377,99 @@ function PlayGame() {
           <tr>
             <td><button className="btn btn-outline-dark" onClick={endGameHandler} type="button">End Game</button></td>
           </tr>
-          {toggleResult()}
+          {/* {toggleResult()} */}
         </tbody>
       );
     }
   }
 
   const toggleRunners = (num) => {
-
+    console.log(runners);
     let found = false;
+    if (plateAppearance.inPlay === true) {
+      for (let i = 0; i < runners.length; i++) {
+        if (runners[i].base === num) {
+          found = true;
+        }
 
-    for (let i = 0; i < pas.length; i++) {
-      if (pas[i].base === num) {
-        found = true;
+        if (found) {
+          found = false;
+          return (
+            <tr>
+              <th scope="row">{num}</th>
+              <td>{runners[i].player.firstName} {runners[i].player.lastName}</td>
+              <td>
+                <select onChange={baseChangeHandler} name={runners[i]} className="select">
+                  <option>Select</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={-1}>Out</option>
+                </select>
+                <button className="btn btn-primary" onClick={() => baseSubmitHandler(i)} type="submit">✓</button>
+              </td>
+            </tr>
+          );
+        }
+        else if (runners[i] === runners[runners.length - 1]) {
+          return (
+            <tr>
+              <th scope="row">{num}</th>
+              <td>Empty</td>
+              <td></td>
+            </tr>
+          )
+        }
       }
+    }
+    else {
+      for (let i = 0; i < runners.length; i++) {
+        if (runners[i].base === num) {
+          found = true;
+        }
 
-      if (found) {
-        found = false;
-        return (
-          <tr>
-            <th scope="row">{num}</th>
-            <td>{pas[i].player.firstName} {pas[i].player.lastName}</td>
-          </tr>
-        );
+        if (found) {
+          found = false;
+          return (
+            <tr>
+              <th scope="row">{num}</th>
+              <td>{runners[i].player.firstName} {runners[i].player.lastName}</td>
+            </tr>
+          );
+        }
+        else if (runners[i] === runners[runners.length - 1]) {
+          return (
+            <tr>
+              <th scope="row">{num}</th>
+              <td>Empty</td>
+            </tr>
+          )
+        }
       }
-      else if (pas[i] === pas[pas.length - 1]) {
-        return (
+    }
+  }
+
+  const toggleRunnerHead = () => {
+    if (plateAppearance.inPlay === true) {
+      return (
+        <thead>
           <tr>
-            <th scope="row">{num}</th>
-            <td>Empty</td>
+            <th scope="col">Base</th>
+            <th scope="col">Player</th>
+            <th scope="col">Base Change</th>
           </tr>
-        )
-      }
+        </thead>
+      );
+    }
+    else {
+      return (
+        <thead>
+          <tr>
+            <th scope="col">Base</th>
+            <th scope="col">Player</th>
+          </tr>
+        </thead>
+      );
     }
   }
 
@@ -331,12 +488,12 @@ function PlayGame() {
             </thead>
             <tbody>
               <tr>
-                <td>{plateAppearance.game.awayTeam.teamName}</td>
+                <td>{plateAppearance.game.awayTeam.teamAbbr}</td>
                 <td>{plateAppearance.game.awayScore}</td>
                 <td>{plateAppearance.game.awayHits}</td>
               </tr>
               <tr>
-                <td>{plateAppearance.game.homeTeam.teamName}</td>
+                <td>{plateAppearance.game.homeTeam.teamAbbr}</td>
                 <td>{plateAppearance.game.homeScore}</td>
                 <td>{plateAppearance.game.homeHits}</td>
               </tr>
@@ -345,7 +502,7 @@ function PlayGame() {
         </div>
       </div>
       <div className="away-lineup">
-        <div className="card" style={{ width: "18rem" }}>
+        <div className="card" style={{ width: "20rem" }}>
           <div className="card-header align-self-center">
             Away Team: {plateAppearance.game.awayTeam.teamName}
           </div>
@@ -372,7 +529,7 @@ function PlayGame() {
         </div>
       </div>
       <div className="home-lineup">
-        <div className="card" style={{ width: "18rem" }}>
+        <div className="card" style={{ width: "20rem" }}>
           <div className="card-header align-self-center">
             Home Team: {plateAppearance.game.homeTeam.teamName}
           </div>
@@ -399,15 +556,10 @@ function PlayGame() {
         </div>
       </div>
       <div className="runner-card">
-        <div className="card" style={{ width: "250px" }}>
-          <img className="card-img-top" src={scenario4} alt="Card image" />
+        <div className="card" style={{ width: "370px" }}>
+          {toggleImage()}
           <table className="card-table table">
-            <thead>
-              <tr>
-                <th scope="col">Base</th>
-                <th scope="col">Player</th>
-              </tr>
-            </thead>
+            {toggleRunnerHead()}
             <tbody>
               {arr.map((num, index) => {
                 return (
@@ -433,6 +585,7 @@ function PlayGame() {
           </table>
         </div>
       </div>
+
     </div>
 
   );
