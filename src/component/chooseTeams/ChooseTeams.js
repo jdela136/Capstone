@@ -9,10 +9,10 @@ function ChooseTeam() {
     const [teams, setTeams] = useState([]);
     const [game, setGame] = useState({
         homeTeam: {
-            id : 1
+            id: 1
         },
         awayTeam: {
-            id : 1
+            id: 1
         }
     });
 
@@ -79,8 +79,8 @@ function ChooseTeam() {
                                         <h2 class="fw-bold mb-2 text-uppercase">Choose Your Teams</h2>
 
                                         <div className="mb-4">
-
                                             <select onChange={homeTeamChangeHandler} name="id" className="select big-select">
+                                                <option>Choose</option>
                                                 {teams.map((team, index) => {
                                                     return (
                                                         <option value={team.id}>{team.teamName}</option>
@@ -92,6 +92,7 @@ function ChooseTeam() {
                                         <div className="mb-4">
 
                                             <select onChange={awayTeamChangeHandler} name="id" className="select big-select">
+                                                <option>Choose</option>
                                                 {teams.map((team, index) => {
                                                     return (
                                                         <option value={team.id}>{team.teamName}</option>

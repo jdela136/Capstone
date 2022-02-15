@@ -189,12 +189,12 @@ const Home = () => {
             <h1 className="h2">{league.leagueName} League</h1>
           </div>
           
-          {<Route exact path= "/home" component={Teams}/>}
-          {<Route path= "/home/add-player" component={AddPlayer}/>}
-          {<Route path= "/home/add-team" component={AddTeam}/>}
-          {<Route path= "/home/standings" component={Standings}/>}
-          {<Route path= "/home/:teamId/stats" component={TeamStats}/>}
-          {<Route path= "/home/:teamId/line-up" component={LineUp}/>}
+          <Route exact path= "/home" component={Teams}/>
+          <Route path= "/home/add-player" component={AddPlayer}/>
+          <Route path= "/home/add-team" component={AddTeam}/>
+          <Route path= "/home/standings" component={Standings}/>
+          <Route path= "/home/:teamId/stats" component={TeamStats}/>
+          <Route path= "/home/:teamId/line-up" component={LineUp}/>
         </main>
         <div>
         </div>

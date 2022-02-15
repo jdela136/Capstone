@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Scores() {
-  const [league, setLeague] = useState({});
   const [games, setGames] = useState([]);
+  const [league, setLeague] = useState({});
 
   useEffect(() => {
     const params = {

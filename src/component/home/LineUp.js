@@ -28,7 +28,7 @@ function LineUp() {
     axios
       .post("http://localhost:8080/remove-from-lineup", player)
       .then((response) => {
-        setPageRefresh(pageRefresh+1);
+        setPageRefresh(pageRefresh + 1);
       })
       .catch((error) => {
         console.log();
@@ -40,7 +40,7 @@ function LineUp() {
     axios
       .post("http://localhost:8080/add-to-lineup", addPlayer)
       .then((response) => {
-        setPageRefresh(pageRefresh+1);
+        setPageRefresh(pageRefresh + 1);
       })
       .catch((error) => {
         console.log();
@@ -50,44 +50,44 @@ function LineUp() {
   const addPlayerChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    const tempAddPlayer = { ...addPlayer} ;
+    const tempAddPlayer = { ...addPlayer };
     tempAddPlayer[name] = value;
     setAddPlayer(tempAddPlayer);
   };
 
   const toggleLineUp = (num) => {
-    
+
     let found = false;
 
-    for (let i =0; i < players.length; i++) {
+    for (let i = 0; i < players.length; i++) {
 
       if (players[i].lineupId === num) {
         found = true;
       }
-      
+
       if (found) {
         found = false;
         return (
           <tr>
             <th scope="row">{num}</th>
             <td>{players[i].firstName} {players[i].lastName}</td>
-            <td><input className="btn btn-danger" onClick= {() => removeFromLineUpHandler(players[i])} type="button" value="-"/></td>
+            <td><input className="btn btn-danger" onClick={() => removeFromLineUpHandler(players[i])} type="button" value="-" /></td>
           </tr>
         );
       }
-      else if(players[i] === players[players.length -1]){
+      else if (players[i] === players[players.length - 1]) {
         return (
-        <tr>
-          <th scope="row">{num}</th>
-          <td><select onChange={addPlayerChangeHandler} name="id" className="select big-select">
-                        {players.map((player, index) => {
-                          return(
-                          <option value={player.id}>{player.firstName} {player.lastName}</option>
-                          );
-                        })}
-                        </select></td>
-          <td><input className="btn btn-primary" onClick={() => addToLineUpHandler(num)} type="button" value="+"/></td>
-        </tr>
+          <tr>
+            <th scope="row">{num}</th>
+            <td><select onChange={addPlayerChangeHandler} name="id" className="select big-select">
+              {players.map((player, index) => {
+                return (
+                  <option value={player.id}>{player.firstName} {player.lastName}</option>
+                );
+              })}
+            </select></td>
+            <td><input className="btn btn-primary" onClick={() => addToLineUpHandler(num)} type="button" value="+" /></td>
+          </tr>
         )
       }
     }
@@ -96,7 +96,7 @@ function LineUp() {
   return (
     <div>
       <div>
-      <h1 className="h3 text-center">Set Lineup</h1>
+        <h1 className="h3 text-center">Set Lineup</h1>
         <table className="table table-hover">
           <thead>
             <tr>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import playfield from "../../images/playfield.jpeg";
 import scenario1 from "../../images/scenario1.jpg";
@@ -90,18 +90,6 @@ function PlayGame() {
       .catch((error) => { });
 
   }, [pageRefresh]);
-
-
-  const Popup = props => {
-    return (
-      <div className="popup-box">
-        <div className="box">
-          <span className="close-icon" onClick={props.handleClose}>x</span>
-          {props.content}
-        </div>
-      </div>
-    );
-  };
 
 
   const ballHandler = () => {
@@ -196,7 +184,7 @@ function PlayGame() {
     axios
       .post("http://localhost:8080/end-game", plateAppearance.game)
       .then((response) => {
-        history.pushState("/home");
+        history.push("/home");
       })
       .catch((error) => {
 
@@ -209,7 +197,6 @@ function PlayGame() {
 
   const baseSubmitHandler = (i) => {
     runners[i].base = runnerBase;
-    console.log(runners[i]);
     axios
       .post("http://localhost:8080/move", runners[i])
       .then((response) => {
@@ -301,40 +288,43 @@ function PlayGame() {
 
 
   const toggleResult = () => {
-    if (pas[1].strikes === 3) {
-      return (
-        <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} struck out!</td>
-      );
-    }
-    if (pas[1].balls === 4) {
-      return (
-        <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} walked!</td>
-      );
-    }
-    if (pas[1].base === 1) {
-      return (
-        <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} singled!</td>
-      );
-    }
-    if (pas[1].base === 2) {
-      return (
-        <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} doubled!</td>
-      );
-    }
-    if (pas[1].base === 3) {
-      return (
-        <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} tripled!</td>
-      );
-    }
-    if (pas[1].base === 4) {
-      return (
-        <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} homered!</td>
-      );
-    }
-    if (pas[1].base === 5) {
-      return (
-        <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} got out!</td>
-      );
+    if (typeof pas[1] !== 'undefined') {
+      console.log(pas[1]);
+      if (pas[1].strikes === 3) {
+        return (
+          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} struck out!</td>
+        );
+      }
+      else if (pas[1].balls === 4) {
+        return (
+          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} walked!</td>
+        );
+      }
+      else if (pas[1].base === 1) {
+        return (
+          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} singled!</td>
+        );
+      }
+      else if (pas[1].base === 2) {
+        return (
+          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} doubled!</td>
+        );
+      }
+      else if (pas[1].base === 3) {
+        return (
+          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} tripled!</td>
+        );
+      }
+      else if (pas[1].base === 4) {
+        return (
+          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} homered!</td>
+        );
+      }
+      else if (pas[1].base === 5) {
+        return (
+          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} got out!</td>
+        );
+      }
     }
   }
 
@@ -377,14 +367,13 @@ function PlayGame() {
           <tr>
             <td><button className="btn btn-outline-dark" onClick={endGameHandler} type="button">End Game</button></td>
           </tr>
-          {/* {toggleResult()} */}
+          {toggleResult()}
         </tbody>
       );
     }
   }
 
   const toggleRunners = (num) => {
-    console.log(runners);
     let found = false;
     if (plateAppearance.inPlay === true) {
       for (let i = 0; i < runners.length; i++) {

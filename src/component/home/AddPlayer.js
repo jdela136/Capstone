@@ -91,6 +91,7 @@ function AddPlayer() {
                       <div className="mb-4">
                           
                         <select onChange={teamChangeHandler} className="select big-select">
+                        <option>Choose</option>
                         {teams.map((team, index) => {
                           return(
                           <option name="id" value={team.id}>{team.teamName}</option>
