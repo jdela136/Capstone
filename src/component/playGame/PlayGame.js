@@ -33,6 +33,7 @@ function PlayGame() {
   const history = useHistory();
   const [runners, setRunners] = useState([]);
   let runnerBase = '';
+  const [isFieldersChoice, setFieldersChoice] = useState(false);
 
   useEffect(() => {
     const params = {
@@ -180,6 +181,19 @@ function PlayGame() {
     plateAppearance.inPlay = false;
   };
 
+  const fcHandler = () => {
+    axios
+      .post("http://localhost:8080/fielders-choice", plateAppearance.game)
+      .then((response) => {
+        setPageRefresh(pageRefresh + 1);
+        setFieldersChoice(true);
+      })
+      .catch((error) => {
+
+      });
+    plateAppearance.inPlay = false;
+  };
+
   const endGameHandler = () => {
     axios
       .post("http://localhost:8080/end-game", plateAppearance.game)
@@ -206,6 +220,8 @@ function PlayGame() {
 
       });
   };
+
+
 
   const changeHeaderLayout = () => {
     if (plateAppearance.outs === 3) {
@@ -301,9 +317,16 @@ function PlayGame() {
         );
       }
       else if (pas[1].base === 1) {
-        return (
-          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} singled!</td>
-        );
+        if(isFieldersChoice === true) {
+          return (
+            <td>Last Result: Fielder's Choice!</td>
+          );
+        }
+        else {
+          return (
+            <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} singled!</td>
+          );
+        }
       }
       else if (pas[1].base === 2) {
         return (
@@ -348,6 +371,9 @@ function PlayGame() {
           </tr>
           <tr>
             <td><button className="btn btn-outline-dark" onClick={outHandler} type="button">Out</button></td>
+          </tr>
+          <tr>
+            <td><button className="btn btn-outline-dark" onClick={fcHandler} type="button">Fielders Choice</button></td>
           </tr>
         </tbody>
       );

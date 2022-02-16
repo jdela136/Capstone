@@ -65,6 +65,11 @@ function Header() {
                   Play Game
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/about-me">
+                  About Me
+                </Link>
+              </li>
             </ul>
           </div>
           <h6>Welcome, {league.commissioner.firstName} {league.commissioner.lastName} </h6>
