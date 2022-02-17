@@ -79,7 +79,7 @@ function ChooseTeam() {
                                         <h2 className="fw-bold mb-2 text-uppercase">Choose Your Teams</h2>
 
                                         <div className="mb-4">
-                                            <select onChange={homeTeamChangeHandler} name="id" className="select big-select">
+                                            <select onChange={awayTeamChangeHandler} name="id" className="select big-select">
                                                 <option>Choose</option>
                                                 {teams.map((team, index) => {
                                                     return (
@@ -91,7 +91,7 @@ function ChooseTeam() {
                                         </div>
                                         <div className="mb-4">
 
-                                            <select onChange={awayTeamChangeHandler} name="id" className="select big-select">
+                                            <select onChange={homeTeamChangeHandler} name="id" className="select big-select">
                                                 <option>Choose</option>
                                                 {teams.map((team, index) => {
                                                     return (
