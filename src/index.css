@@ -121,12 +121,14 @@ html {
  position: fixed;
  display: inline-flex;
  left: 76%;
+ top: 25%;
 }
 
 .away-lineup {
   position: fixed;
   display: inline-flex;
-  left: 2%;
+  left: 6%;
+  top: 25%;
  }
 
 .game-score {
@@ -134,12 +136,13 @@ html {
   justify-content: center;
   position: fixed;
   left: 54%;
+  
 }
 
 .runner-card{
   position: fixed;
   left: 25%;
-  margin-top: 50px;
+  top: 19%;
 }
 
 .options{
@@ -176,3 +179,11 @@ html {
   padding-bottom: 70px;
 }
 .margin {margin-bottom: 45px;}
+
+.navbar{
+  margin-bottom: 0px;
+}
+
+#root {
+  height: 100%;
+}

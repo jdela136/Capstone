@@ -227,28 +227,28 @@ function PlayGame() {
     if (plateAppearance.outs === 3) {
       return (
         <div className="card-header">
-          Inning: {plateAppearance.inningNum}  |  Outs: 0 |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
+          Inning: Bottom {plateAppearance.inningNum}  |  Outs: 0 |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
         </div>
       );
     }
     else if (plateAppearance.outs === 4) {
       return (
         <div className="card-header">
-          Inning: {plateAppearance.inningNum}  |  Outs: 1 |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
+          Inning: Bottom {plateAppearance.inningNum}  |  Outs: 1 |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
         </div>
       );
     }
     else if (plateAppearance.outs === 5) {
       return (
         <div className="card-header">
-          Inning: {plateAppearance.inningNum}  |  Outs: 2 |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
+          Inning: Bottom {plateAppearance.inningNum}  |  Outs: 2 |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
         </div>
       );
     }
     else {
       return (
         <div className="card-header">
-          Inning: {plateAppearance.inningNum}  |  Outs: {plateAppearance.outs} |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
+          Inning: Top {plateAppearance.inningNum}  |  Outs: {plateAppearance.outs} |  Ball: {plateAppearance.balls} |  Strike: {plateAppearance.strikes}
         </div>
       );
     }
@@ -305,7 +305,6 @@ function PlayGame() {
 
   const toggleResult = () => {
     if (typeof pas[1] !== 'undefined') {
-      console.log(pas[1]);
       if (pas[1].strikes === 3) {
         return (
           <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} struck out!</td>
@@ -353,7 +352,7 @@ function PlayGame() {
 
 
   const toggleOptions = () => {
-
+    console.log(runners);
     if (plateAppearance.inPlay === true) {
       return (
         <tbody>
@@ -491,7 +490,7 @@ function PlayGame() {
   return (
     <div>
       <div className="game-score">
-        <div className="card" style={{ width: "18rem" }}>
+        <div className="card" style={{ width: "30rem" }}>
           {changeHeaderLayout()}
           <table className="card-table table">
             <thead>
@@ -517,7 +516,7 @@ function PlayGame() {
         </div>
       </div>
       <div className="away-lineup">
-        <div className="card" style={{ width: "20rem" }}>
+        <div className="card" style={{ width: "26rem" }}>
           <div className="card-header align-self-center">
             Away Team: {plateAppearance.game.awayTeam.teamName}
           </div>
@@ -544,7 +543,7 @@ function PlayGame() {
         </div>
       </div>
       <div className="home-lineup">
-        <div className="card" style={{ width: "20rem" }}>
+        <div className="card" style={{ width: "26rem" }}>
           <div className="card-header align-self-center">
             Home Team: {plateAppearance.game.homeTeam.teamName}
           </div>
@@ -586,7 +585,7 @@ function PlayGame() {
         </div>
       </div>
       <div className="options">
-        <div className="card" style={{ width: "18rem" }}>
+        <div className="card" style={{ width: "26rem" }}>
           <div className="card-header">
             Batting Team: {plateAppearance.player.team.teamName}
           </div>

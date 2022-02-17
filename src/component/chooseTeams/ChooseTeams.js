@@ -67,16 +67,16 @@ function ChooseTeam() {
 
     return (
         <div>
-            <section class="vh-100 gradient-custom">
-                <div class="container py-5 h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                            <div class="card bg-dark text-white" style={{ borderRadius: "1rem" }}>
-                                <div class="card-body p-5 text-center">
+            <section className="vh-100 gradient-custom">
+                <div className="container py-5 h-100">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div className="card bg-dark text-white" style={{ borderRadius: "1rem" }}>
+                                <div className="card-body p-5 text-center">
 
-                                    <div class="mb-md-5 mt-md-4 pb-5">
+                                    <div className="mb-md-5 mt-md-4 pb-5">
 
-                                        <h2 class="fw-bold mb-2 text-uppercase">Choose Your Teams</h2>
+                                        <h2 className="fw-bold mb-2 text-uppercase">Choose Your Teams</h2>
 
                                         <div className="mb-4">
                                             <select onChange={homeTeamChangeHandler} name="id" className="select big-select">
@@ -101,7 +101,7 @@ function ChooseTeam() {
                                             </select>
                                             <label className="form-label" for="form3Example1q"> Home Team</label>
                                         </div>
-                                        <button class="btn btn-outline-light btn-lg px-5" onClick={playHandler} type="submit">Play Ball</button>
+                                        <button className="btn btn-outline-light btn-warning btn-lg px-5" onClick={playHandler} type="submit">Play Ball</button>
                                     </div>
                                 </div>
                             </div>

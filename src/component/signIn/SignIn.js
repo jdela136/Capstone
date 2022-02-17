@@ -24,7 +24,7 @@ function SignIn() {
 
   const signInSubmitHandler = () => {
     axios
-      .post("https://softball-tracker-backend.azurewebsites.net/login", signInLeague)
+      .post("http://localhost:8080/login", signInLeague)
       .then((response) => {
         localStorage.setItem("loggedInLeague", response.data.commissioner.email);
         history.push("/home");

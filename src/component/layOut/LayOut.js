@@ -15,7 +15,7 @@ const LayOut = () => {
     const toggleRoutes = () => {
         if(localStorage.getItem("loggedInLeague")) {
             return(
-            <div>
+            <div style={{height: "100%"}}>
             <Header/>
             <Route exact path= "/" component={Home}/>
             <Route path= "/home" component={Home}/>
@@ -28,7 +28,7 @@ const LayOut = () => {
             )}
         else {
             return(
-            <div>
+            <div style={{height: "100%"}}>
             <Route exact path= "/" component={SignIn}/>
             <Route path= "/sign-in" component={SignIn}/>
             <Route path= "/sign-up" component={SignUp}/>
@@ -38,7 +38,7 @@ const LayOut = () => {
     }
 
     return (
-        <div>
+        <div style={{height: "100%"}}>
             {toggleRoutes()}
         </div>
     );
