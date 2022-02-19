@@ -32,7 +32,7 @@ function PlayGame() {
   const [pas, setPAs] = useState([]);
   const history = useHistory();
   const [runners, setRunners] = useState([]);
-  let runnerBase = '';
+  const [runnerBase, setRunnerBase] = useState('');
   const [isFieldersChoice, setFieldersChoice] = useState(false);
 
   useEffect(() => {
@@ -206,13 +206,24 @@ function PlayGame() {
   };
 
   const baseChangeHandler = (event) => {
-    runnerBase = event.target.value;
+    setRunnerBase(event.target.value);
+    if(event.target.value == 4) {
+      plateAppearance.isSacFly = true;
+    }
+    else {
+      plateAppearance.isSacFly = false;
+    }
   };
 
   const baseSubmitHandler = (i) => {
-    runners[i].base = runnerBase;
+    console.log(plateAppearance.isSacFly);
+    const formData = new FormData();
+    formData.append('paId', runners[i].id);
+    formData.append('startingBase', runners[i].base);
+    formData.append('endingBase', runnerBase);
+    formData.append('isSacFly', plateAppearance.isSacFly);
     axios
-      .post("http://localhost:8080/move", runners[i])
+      .post("http://localhost:8080/move", formData)
       .then((response) => {
         setPageRefresh(pageRefresh + 1);
       })
@@ -307,52 +318,76 @@ function PlayGame() {
     if (typeof pas[1] !== 'undefined') {
       if (pas[1].strikes === 3) {
         return (
-          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} struck out!</td>
+          <tr>
+            <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Strike Out</td>
+          </tr>
         );
       }
       else if (pas[1].balls === 4) {
         return (
-          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} walked!</td>
+          <tr>
+            <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Walk</td>
+          </tr>
         );
       }
       else if (pas[1].base === 1) {
-        if(isFieldersChoice === true) {
+        if (isFieldersChoice === true) {
           return (
-            <td>Last Result: Fielder's Choice!</td>
+            <tr>
+              <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Fielder's Choice!</td>
+            </tr>
           );
         }
         else {
           return (
-            <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} singled!</td>
+            <tr>
+              <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}: Single</td>
+            </tr>
           );
         }
       }
       else if (pas[1].base === 2) {
         return (
-          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} doubled!</td>
+          <tr>
+            <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Double</td>
+          </tr>
         );
       }
       else if (pas[1].base === 3) {
         return (
-          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} tripled!</td>
+          <tr>
+            <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Triple</td>
+          </tr>
         );
       }
       else if (pas[1].base === 4) {
         return (
-          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} homered!</td>
+          <tr>
+            <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Home Run</td>
+          </tr>
         );
       }
-      else if (pas[1].base === 5) {
-        return (
-          <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName} got out!</td>
-        );
+      else if (pas[1].base === -1) {
+        if(pas[1].isSacFly === true){
+          return (
+            <tr>
+              <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Sac Fly</td>
+            </tr>
+          );             
+        }
+        else {
+          return (
+            <tr>
+              <td>Last Result: {pas[1].player.firstName} {pas[1].player.lastName}- Out</td>
+            </tr>
+          );
+        }
       }
     }
   }
 
 
   const toggleOptions = () => {
-    console.log(runners);
     if (plateAppearance.inPlay === true) {
       return (
         <tbody>

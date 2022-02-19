@@ -35,7 +35,7 @@ const SignUp = () => {
     axios
       .post("http://localhost:8080/leagues", league)
       .then((response) => {
-        history.push("thank-you");
+        history.push("sign-in");
       })
       .catch((error) => {
         console.log();

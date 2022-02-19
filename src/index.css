@@ -113,7 +113,7 @@ html {
   color: black;
 }
 
-.table-color {
+.red-color {
   background: #cd301e;
 }
 
@@ -186,4 +186,8 @@ html {
 
 #root {
   height: 100%;
+}
+
+.space-scores {
+  margin-bottom: 100px;
 }

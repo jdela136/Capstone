@@ -2,7 +2,6 @@ import Header from "../header/Header";
 import Home from "../home/Home";
 import {Route, withRouter} from 'react-router-dom';
 import SignIn from "../signIn/SignIn";
-import ThankYou from "../thankYou/ThankYou";
 import SignUp from "../signUp/SignUp";
 import Scores from "../scores/Scores";
 import LeagueStats from "../leagueStats/LeagueStats";
@@ -32,7 +31,6 @@ const LayOut = () => {
             <Route exact path= "/" component={SignIn}/>
             <Route path= "/sign-in" component={SignIn}/>
             <Route path= "/sign-up" component={SignUp}/>
-            <Route path= "/thank-you" component={ThankYou}/>
         </div>
             )}
     }

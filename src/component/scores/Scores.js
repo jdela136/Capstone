@@ -57,7 +57,7 @@ function Scores() {
         {games.map((game, index) => {
           return (
             <div className="col">
-              <div className="card" style={{ width: "18rem" }}>
+              <div className="card space-scores" style={{ width: "18rem" }}>
                 {toggleGameStatus(index)}
                 <table class="card-table table">
                   <thead>

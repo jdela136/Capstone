@@ -42,6 +42,7 @@ function Teams() {
                                 <div className="card-body">
                                     <p className="card-text">Team Name: {team.teamName}</p>
                                     <p className="card-text">Abbreviation: {team.teamAbbr}</p>
+                                    <p className="card-text">Record: {team.wins} - {team.losses}</p>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="btn-group">
                                             <button

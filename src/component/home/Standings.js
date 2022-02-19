@@ -30,7 +30,7 @@ function Standings() {
     <div>
       <h1 className="h3 text-center">Standings</h1>
       <table className="table table-hover">
-        <thead className= "table-color">
+        <thead className= "red-color">
           <tr>
             <th scope="col">Team Name</th>
             <th scope="col">Wins</th>
