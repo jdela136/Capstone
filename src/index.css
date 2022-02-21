@@ -108,6 +108,11 @@ html {
   margin-top: 50px;
 }
 
+.select{
+  width: 104px;
+  color: black;
+}
+
 .big-select{
   width: 390px;
   color: black;
@@ -190,4 +195,8 @@ html {
 
 .space-scores {
   margin-bottom: 100px;
+}
+
+.slight-space {
+  margin-right: 5px;
 }

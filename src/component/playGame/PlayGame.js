@@ -127,6 +127,7 @@ function PlayGame() {
   };
 
   const hitHandler = (bases) => {
+    setFieldersChoice(false);
     if (bases === 1) {
       axios
         .post("http://localhost:8080/single", plateAppearance.game)
@@ -522,12 +523,38 @@ function PlayGame() {
     }
   }
 
-  return (
-    <div>
-      <div className="game-score">
-        <div className="card" style={{ width: "30rem" }}>
-          {changeHeaderLayout()}
-          <table className="card-table table">
+  const toggleScoreCard = () => {
+    if(plateAppearance.game.inningEnding != null) {
+      return(
+        <table className="card-table table">
+            <thead>
+              <tr>
+                <th scope="col">Team</th>
+                <th scope="col">Runs</th>
+                <th scope="col">Hits</th>
+                <th scope="col">Homeruns</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{plateAppearance.game.awayTeam.teamAbbr}</td>
+                <td>{plateAppearance.game.awayScore}</td>
+                <td>{plateAppearance.game.awayHits}</td>
+                <td>{plateAppearance.game.awayHomeruns} / {plateAppearance.game.homerunLimit}</td>
+              </tr>
+              <tr>
+                <td>{plateAppearance.game.homeTeam.teamAbbr}</td>
+                <td>{plateAppearance.game.homeScore}</td>
+                <td>{plateAppearance.game.homeHits}</td>
+                <td>{plateAppearance.game.homeHomeruns} / {plateAppearance.game.homerunLimit}</td>
+              </tr>
+            </tbody>
+          </table>
+      );
+    }
+    else {
+      return(
+        <table className="card-table table">
             <thead>
               <tr>
                 <th scope="col">Team</th>
@@ -548,6 +575,16 @@ function PlayGame() {
               </tr>
             </tbody>
           </table>
+      );
+    }
+  }
+
+  return (
+    <div>
+      <div className="game-score">
+        <div className="card" style={{ width: "30rem" }}>
+          {changeHeaderLayout()}
+          {toggleScoreCard()}
         </div>
       </div>
       <div className="away-lineup">

@@ -54,6 +54,14 @@ function ChooseTeam() {
         setGame(tempGame);
     };
 
+    const gameChangeHandler = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        const tempGame = { ...game };
+        tempGame[name] = value;
+        setGame(tempGame);
+    };
+
     const playHandler = (event) => {
         axios
             .post("http://localhost:8080/start-game", game)
@@ -100,6 +108,25 @@ function ChooseTeam() {
                                                 })}
                                             </select>
                                             <label className="form-label" for="form3Example1q"> Home Team</label>
+                                        </div>
+                                        <div className="mb-4">
+                                        <label className="form-label slight-space" for="form3Example1q"> Homerun Limit (Optional)</label>
+                                            <select onChange={gameChangeHandler} name="homerunLimit" className="select ">
+                                                <option>Limit</option>
+                                                <option value={1}>1</option>
+                                                <option value={2}>2</option>
+                                                <option value={3}>3</option>
+                                                <option value={4}>4</option>
+                                                <option value={5}>5</option>
+                                                <option value={6}>6</option>
+                                                <option value={7}>7</option>
+                                                <option value={8}>8</option>
+                                            </select>
+                                            <select onChange={gameChangeHandler} name="inningEnding" className="select ">
+                                                <option>IE/Out Rule</option>
+                                                <option value={true}>Inning Ending</option>
+                                                <option value={false}>Out</option>
+                                            </select>
                                         </div>
                                         <button className="btn btn-outline-light btn-warning btn-lg px-5" onClick={playHandler} type="submit">Play Ball</button>
                                     </div>
