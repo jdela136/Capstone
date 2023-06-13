@@ -1,3 +1,4 @@
+import React from "react";
 import Jonathan_Headshot from "../images/Jonathan_Headshot.jpeg";
 import photo1 from "../images/photo1.jpg";
 import photo2 from "../images/photo2.jpg";
