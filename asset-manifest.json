@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/softballtrackerfrontend/static/css/main.65080a40.css",
+    "main.js": "/softballtrackerfrontend/static/js/main.3a9ba45e.js",
+    "static/js/787.0c7586a7.chunk.js": "/softballtrackerfrontend/static/js/787.0c7586a7.chunk.js",
+    "static/media/field.jpg": "/softballtrackerfrontend/static/media/field.1252294e85f35ac14216.jpg",
+    "static/media/Jonathan_Headshot.jpeg": "/softballtrackerfrontend/static/media/Jonathan_Headshot.6ced1dbea4f6e79ef280.jpeg",
+    "static/media/photo2.jpg": "/softballtrackerfrontend/static/media/photo2.a054c0efd5eb263799c2.jpg",
+    "static/media/playfield.jpeg": "/softballtrackerfrontend/static/media/playfield.1b40eddb69d11a81a3fb.jpeg",
+    "static/media/scenario1.jpg": "/softballtrackerfrontend/static/media/scenario1.510eb7659e916535faf3.jpg",
+    "static/media/Softball.jpg": "/softballtrackerfrontend/static/media/Softball.5ff1f649ac22f314a3d2.jpg",
+    "static/media/scenario3.jpg": "/softballtrackerfrontend/static/media/scenario3.5c53e2fe5834d617045d.jpg",
+    "static/media/photo1.jpg": "/softballtrackerfrontend/static/media/photo1.d87c72ab52c86ad767cc.jpg",
+    "static/media/scenario2.jpg": "/softballtrackerfrontend/static/media/scenario2.91a584365d10eb63f06a.jpg",
+    "static/media/photo3.jpg": "/softballtrackerfrontend/static/media/photo3.d0c7f3c403b6c56ae187.jpg",
+    "static/media/scenario4.jpg": "/softballtrackerfrontend/static/media/scenario4.deb61f818e0876dbecfc.jpg",
+    "static/media/scenario5.jpg": "/softballtrackerfrontend/static/media/scenario5.6f1bbaea8d214ce248ca.jpg",
+    "static/media/scenario7.jpg": "/softballtrackerfrontend/static/media/scenario7.21a4bf17d29a50230a0a.jpg",
+    "static/media/scenario6.jpg": "/softballtrackerfrontend/static/media/scenario6.de011c4eebeb7505eb86.jpg",
+    "index.html": "/softballtrackerfrontend/index.html",
+    "main.65080a40.css.map": "/softballtrackerfrontend/static/css/main.65080a40.css.map",
+    "main.3a9ba45e.js.map": "/softballtrackerfrontend/static/js/main.3a9ba45e.js.map",
+    "787.0c7586a7.chunk.js.map": "/softballtrackerfrontend/static/js/787.0c7586a7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.65080a40.css",
+    "static/js/main.3a9ba45e.js"
+  ]
+}
