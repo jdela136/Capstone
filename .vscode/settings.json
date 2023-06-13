@@ -1,4 +1,0 @@
-{
-    "appService.deploySubpath": ".",
-    "appService.defaultWebAppToDeploy": "/subscriptions/982c3124-bf67-4471-be20-5418fbc11841/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/softball-stat-tracker"
-}
